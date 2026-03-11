@@ -119,9 +119,6 @@ header {
   height: 60vh;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;
 }
 
 .brand h1 {
@@ -160,13 +157,12 @@ header {
 }
 
 .contact-pill {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.95rem;
+  margin-top: 1rem;
+  font-size: 1.25rem;
   color: var(--secondary);
-  line-height: 1.6;
-  text-align: right;
+  font-weight: 300;
+  line-height: 1.5;
+  white-space: nowrap;
 }
 
 /* Vertical Timeline Components */
@@ -527,13 +523,15 @@ section {
   header {
     height: auto;
     padding-top: 100px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2rem;
+  }
+
+  .top-nav {
+    right: 2rem;
+    top: 1.5rem;
   }
 
   .contact-pill {
-    text-align: left;
+    font-size: 0.95rem;
     margin-top: 1rem;
   }
 }
