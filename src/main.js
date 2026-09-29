@@ -450,61 +450,6 @@ const renderApp = () => {
         </div>
       </section>
 
-      <!-- Interactive Agentic Sandbox (Faux-OS Window Chrome) -->
-      <section id="terminal" class="section-spacing">
-        <div class="section-header reveal">
-          <span class="section-eyebrow">Interactive Agent Sandbox</span>
-          <h2>Autonomous Agent CLI Simulator</h2>
-          <p>Inspect deterministic multi-step agent reasoning, tool dispatching, and resolution cycles.</p>
-        </div>
-
-        <div class="terminal-window reveal">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <span class="terminal-dot"></span>
-              <span class="terminal-dot"></span>
-              <span class="terminal-dot"></span>
-            </div>
-            <span class="terminal-title">vikram@agentic-core: ~/agents/orchestrator</span>
-            <span class="terminal-badge">
-              <span class="status-dot"></span>
-              <span>Ollama Core Ready</span>
-            </span>
-          </div>
-
-          <div class="terminal-controls">
-            <span class="terminal-controls-label">Presets:</span>
-            ${resumeData.agentPresets.map((preset, index) => `
-              <button class="terminal-chip" data-preset-idx="${index}">
-                <span>${preset.label}</span>
-              </button>
-            `).join('')}
-          </div>
-
-          <div id="terminalBody" class="terminal-body">
-            <div class="terminal-line">
-              <span class="terminal-tag tag-cmd">SYS</span>
-              <span>Agentic Orchestration Runtime v2.4 initialized. Context window: 8192 tokens.</span>
-            </div>
-            <div class="terminal-line">
-              <span class="terminal-tag tag-result">INFO</span>
-              <span>Select any preset button above or type <kbd>help</kbd> below to trigger an autonomous agent workflow.</span>
-            </div>
-          </div>
-
-          <form id="terminalForm" class="terminal-prompt-bar">
-            <span class="terminal-prefix">agent &gt;</span>
-            <input 
-              id="terminalInput" 
-              type="text" 
-              class="terminal-input" 
-              placeholder="Type 'help', 'skills', 'contact', 'run', or select a preset..." 
-              autocomplete="off"
-            />
-          </form>
-        </div>
-      </section>
-
       <!-- Filterable Journey & Career Timeline -->
       <section id="timeline" class="section-spacing">
         <div class="section-header reveal">
@@ -659,6 +604,85 @@ const renderApp = () => {
 
         <div class="deck-keystroke-hint">
           <span>Hint: Hover any card in the fan to pop out &bull; Click to lock open &bull; Use <kbd>&larr;</kbd> / <kbd>&rarr;</kbd> arrow keys to browse</span>
+        </div>
+      </section>
+
+      <!-- Interactive Agent CLI & Antigravity Terminal Section (At Bottom Before Contact) -->
+      <section id="terminal" class="section-spacing">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Interactive Agent CLI</span>
+          <h2>Developer Console &amp; Direct Discovery</h2>
+          <p>Autonomous contact retrieval &amp; telemetry engine. Type <kbd>email</kbd>, <kbd>phone</kbd>, or select a preset to interact.</p>
+        </div>
+
+        <div class="terminal-window reveal">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+            </div>
+            <span class="terminal-title">~</span>
+            <span class="terminal-badge">
+              <span class="status-dot"></span>
+              <span>Antigravity Agent Ready</span>
+            </span>
+          </div>
+
+          <div class="terminal-controls">
+            <span class="terminal-controls-label">Presets:</span>
+            <button class="terminal-chip" data-cmd="email">
+              <span>email</span>
+            </button>
+            <button class="terminal-chip" data-cmd="phone">
+              <span>phone</span>
+            </button>
+            <button class="terminal-chip" data-cmd="contact">
+              <span>contact</span>
+            </button>
+            <button class="terminal-chip" data-cmd="skills">
+              <span>skills</span>
+            </button>
+            <button class="terminal-chip" data-cmd="troubleshoot">
+              <span>agent run</span>
+            </button>
+            <button class="terminal-chip" data-cmd="help">
+              <span>help</span>
+            </button>
+            <button class="terminal-chip" data-cmd="clear">
+              <span>clear</span>
+            </button>
+          </div>
+
+          <!-- Canvas Layer with Antigravity Physics Particles & Foreground Text -->
+          <div class="terminal-canvas-container">
+            <canvas id="antigravityCanvas" class="antigravity-canvas"></canvas>
+            <div id="terminalBody" class="terminal-body">
+              <div class="terminal-line">
+                <span class="terminal-tag tag-cmd">SYS</span>
+                <span>Antigravity Agentic Runtime v2.4 initialized. Particle physics engine active.</span>
+              </div>
+              <div class="terminal-line">
+                <span class="terminal-tag tag-result">INFO</span>
+                <span>Type <kbd>email</kbd> to retrieve primary contact, or click any preset chip above.</span>
+              </div>
+            </div>
+          </div>
+
+          <form id="terminalForm" class="terminal-prompt-bar">
+            <span class="terminal-prompt-prefix">
+              <span class="prompt-arrow">&rarr;</span>
+              <span class="prompt-tilde">~</span>
+            </span>
+            <input 
+              id="terminalInput" 
+              type="text" 
+              class="terminal-input" 
+              placeholder="Type 'email', 'phone', 'contact', 'skills', or 'help'..." 
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </form>
         </div>
       </section>
 
@@ -1118,20 +1142,148 @@ const setupProjectsDeck = () => {
   });
 };
 
-// Terminal Simulator Logic
+// Antigravity Particle Canvas Engine (macOS Terminal Demo Look)
+const setupAntigravityCanvas = (terminalEl) => {
+  const canvas = terminalEl.querySelector('#antigravityCanvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  let animationFrameId;
+  let isVisible = true;
+  let width = 0, height = 0;
+
+  const resize = () => {
+    const parent = canvas.parentElement;
+    if (!parent) return;
+    width = canvas.width = parent.offsetWidth;
+    height = canvas.height = parent.offsetHeight || 300;
+  };
+  resize();
+  window.addEventListener('resize', resize);
+
+  const particleCount = 42;
+  const particles = [];
+  const maxDistance = 90;
+  let mouse = { x: -1000, y: -1000 };
+
+  terminalEl.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+
+  terminalEl.addEventListener('mouseleave', () => {
+    mouse.x = -1000;
+    mouse.y = -1000;
+  });
+
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * (width || 600),
+      y: Math.random() * (height || 300),
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: -(Math.random() * 0.4 + 0.12), // Upward float (antigravity)
+      radius: Math.random() * 1.4 + 0.8,
+      alpha: Math.random() * 0.5 + 0.3
+    });
+  }
+
+  const render = () => {
+    if (!isVisible) return;
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      // Antigravity upward drift
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Mouse repulsion / buoyancy
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 85 && dist > 0) {
+        const force = ((85 - dist) / 85) * 0.7;
+        p.x += (dx / dist) * force;
+        p.y += (dy / dist) * force;
+      }
+
+      // Wrap around bounds (float to top, reappear at bottom)
+      if (p.y < -10) {
+        p.y = height + 10;
+        p.x = Math.random() * width;
+      }
+      if (p.x < -10) p.x = width + 10;
+      if (p.x > width + 10) p.x = -10;
+
+      // Draw particle dot
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(160, 210, 255, ${p.alpha * 0.75})`;
+      ctx.fill();
+
+      // Connect proximate particles with faint vector lines
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const lineDist = Math.hypot(p.x - p2.x, p.y - p2.y);
+        if (lineDist < maxDistance) {
+          const lineAlpha = (1 - lineDist / maxDistance) * 0.16;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = `rgba(140, 200, 255, ${lineAlpha})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    animationFrameId = requestAnimationFrame(render);
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isVisible = entry.isIntersecting;
+      if (isVisible) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = requestAnimationFrame(render);
+      } else {
+        cancelAnimationFrame(animationFrameId);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  observer.observe(terminalEl);
+  animationFrameId = requestAnimationFrame(render);
+};
+
+// Terminal Simulator Logic (Repurposed as Interactive Contact & Antigravity Discovery Console)
 let isTerminalRunning = false;
 const setupTerminalSandbox = () => {
+  const terminalWindow = document.querySelector('.terminal-window');
   const terminalBody = document.querySelector('#terminalBody');
   const terminalForm = document.querySelector('#terminalForm');
   const terminalInput = document.querySelector('#terminalInput');
   const presetChips = document.querySelectorAll('.terminal-chip');
 
-  if (!terminalBody) return;
+  if (!terminalBody || !terminalWindow) return;
+
+  // Initialize Antigravity Particle Animation Canvas
+  setupAntigravityCanvas(terminalWindow);
 
   const appendTerminalLine = (tag, tagClass, text) => {
     const line = document.createElement('div');
     line.className = 'terminal-line';
     line.innerHTML = `<span class="terminal-tag ${tagClass}">${tag}</span><span>${text}</span>`;
+    terminalBody.appendChild(line);
+    terminalBody.scrollTop = terminalBody.scrollHeight;
+  };
+
+  const appendTerminalLineHtml = (tag, tagClass, html) => {
+    const line = document.createElement('div');
+    line.className = 'terminal-line';
+    line.innerHTML = `<span class="terminal-tag ${tagClass}">${tag}</span><div>${html}</div>`;
     terminalBody.appendChild(line);
     terminalBody.scrollTop = terminalBody.scrollHeight;
   };
@@ -1143,7 +1295,7 @@ const setupTerminalSandbox = () => {
     appendTerminalLine('CMD', 'tag-cmd', preset.command);
 
     for (const step of preset.steps) {
-      await new Promise(r => setTimeout(r, 600));
+      await new Promise(r => setTimeout(r, 550));
       const tagMap = {
         plan: { label: 'PLAN', cls: 'tag-plan' },
         think: { label: 'THINK', cls: 'tag-think' },
@@ -1158,45 +1310,112 @@ const setupTerminalSandbox = () => {
     isTerminalRunning = false;
   };
 
+  const processCommand = async (cmdRaw) => {
+    const val = cmdRaw.trim().toLowerCase();
+    if (!val || isTerminalRunning) return;
+
+    appendTerminalLine('INPUT', 'tag-cmd', val);
+
+    if (val === 'clear' || val === 'cls') {
+      terminalBody.innerHTML = '';
+      appendTerminalLine('SYS', 'tag-cmd', 'Terminal cleared. Antigravity particle engine running.');
+    } else if (val === 'email' || val === 'mail' || val === 'e-mail') {
+      appendTerminalLine('PLAN', 'tag-plan', 'Resolving primary communication channel for Vikram Rajpurohit...');
+      await new Promise(r => setTimeout(r, 220));
+      appendTerminalLine('RESOLVE', 'tag-tool', 'Identity: Vikram Rajpurohit → Channel: Email');
+      await new Promise(r => setTimeout(r, 220));
+      const emailHtml = `
+        <div style="margin: 0.2rem 0 0.35rem;">
+          <span style="color: #ffffff; font-weight: 600; font-size: 0.95rem;">${resumeData.contact.email}</span>
+        </div>
+        <div class="terminal-inline-actions">
+          <a href="mailto:${resumeData.contact.email}?subject=Inquiry%20via%20Agent%20CLI" class="terminal-inline-link">
+            ${icons.arrowUpRight}
+            <span>Send Email</span>
+          </a>
+          <button class="terminal-inline-copy copy-contact-btn" data-copy-val="${resumeData.contact.email}">
+            ${icons.copy}
+            <span>Copy Address</span>
+            <span class="copy-tooltip">Copied</span>
+          </button>
+        </div>
+      `;
+      appendTerminalLineHtml('EMAIL', 'tag-success', emailHtml);
+      setupClipboardButtons();
+    } else if (val === 'phone' || val === 'call' || val === 'mobile' || val === 'tel') {
+      appendTerminalLine('PLAN', 'tag-plan', 'Fetching verified direct telephone lines...');
+      await new Promise(r => setTimeout(r, 220));
+      const phoneHtml = `
+        <div style="display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.25rem;">
+          <div>• India (Direct): <strong>${resumeData.contact.inPhone}</strong> (Mumbai, IN)</div>
+          <div>• United Kingdom: <strong>${resumeData.contact.ukPhone}</strong> (Birmingham, UK)</div>
+        </div>
+        <div class="terminal-inline-actions">
+          <button class="terminal-inline-copy copy-contact-btn" data-copy-val="${resumeData.contact.inPhone}">
+            ${icons.copy}
+            <span>Copy India (+91)</span>
+            <span class="copy-tooltip">Copied</span>
+          </button>
+          <button class="terminal-inline-copy copy-contact-btn" data-copy-val="${resumeData.contact.ukPhone}">
+            ${icons.copy}
+            <span>Copy UK (+44)</span>
+            <span class="copy-tooltip">Copied</span>
+          </button>
+        </div>
+      `;
+      appendTerminalLineHtml('PHONE', 'tag-success', phoneHtml);
+      setupClipboardButtons();
+    } else if (val === 'contact' || val === 'all' || val === 'channels') {
+      appendTerminalLine('PLAN', 'tag-plan', 'Aggregating complete contact matrix & verified profiles...');
+      await new Promise(r => setTimeout(r, 220));
+      const contactHtml = `
+        <div style="display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.25rem;">
+          <div>• Email: <a href="mailto:${resumeData.contact.email}" class="terminal-text-link">${resumeData.contact.email}</a></div>
+          <div>• Phones: ${resumeData.contact.inPhone} (IN) | ${resumeData.contact.ukPhone} (UK)</div>
+          <div>• Substack: <a href="${resumeData.contact.substackUrl}" target="_blank" rel="noopener noreferrer" class="terminal-text-link">${resumeData.contact.substackUrl}</a></div>
+          <div>• LinkedIn: <a href="${resumeData.contact.linkedinUrl}" target="_blank" rel="noopener noreferrer" class="terminal-text-link">${resumeData.contact.linkedinUrl}</a></div>
+          <div>• GitHub: <a href="${resumeData.contact.githubUrl}" target="_blank" rel="noopener noreferrer" class="terminal-text-link">${resumeData.contact.githubUrl}</a></div>
+        </div>
+      `;
+      appendTerminalLineHtml('CONTACT', 'tag-success', contactHtml);
+    } else if (val === 'skills' || val === 'stack') {
+      appendTerminalLine('STACK', 'tag-tool', 'Core: Multi-Agent Systems, Ollama, LangChain, Python, Local LLMs, PyTorch, Playwright, React, Three.js');
+    } else if (val === 'whoami' || val === 'about') {
+      appendTerminalLine('INFO', 'tag-success', `${resumeData.name} — LLM Engineer & Agentic AI Specialist (Mumbai, IN). Architecting Autonomous Multi-Agent Workflows & Offline LLMs.`);
+    } else if (val === 'run' || val.includes('troubleshoot')) {
+      executePreset(resumeData.agentPresets[0]);
+    } else if (val === 'help') {
+      appendTerminalLine('HELP', 'tag-plan', 'Available interactive commands:');
+      appendTerminalLine('LIST', 'tag-result', '• email     - Retrieve Vikram\'s primary email with 1-click actions');
+      appendTerminalLine('LIST', 'tag-result', '• phone     - Display verified telephone lines (India & UK)');
+      appendTerminalLine('LIST', 'tag-result', '• contact   - Return complete communication channels');
+      appendTerminalLine('LIST', 'tag-result', '• skills    - Output verified engineering competencies');
+      appendTerminalLine('LIST', 'tag-result', '• run       - Execute multi-step autonomous troubleshooting agent');
+      appendTerminalLine('LIST', 'tag-result', '• clear     - Clear the terminal console output');
+    } else {
+      appendTerminalLine('ERR', 'tag-result', `Command not recognized: '${val}'. Type 'email', 'phone', 'contact', 'skills', or 'help'.`);
+    }
+  };
+
   presetChips.forEach(chip => {
     chip.addEventListener('click', () => {
-      const idx = Number(chip.getAttribute('data-preset-idx'));
-      const preset = resumeData.agentPresets[idx];
-      if (preset) executePreset(preset);
+      const cmd = chip.getAttribute('data-cmd');
+      if (cmd) {
+        processCommand(cmd);
+      } else {
+        const idx = Number(chip.getAttribute('data-preset-idx'));
+        const preset = resumeData.agentPresets[idx];
+        if (preset) executePreset(preset);
+      }
     });
   });
 
   if (terminalForm && terminalInput) {
     terminalForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const val = terminalInput.value.trim().toLowerCase();
+      const val = terminalInput.value;
       terminalInput.value = '';
-
-      if (!val) return;
-
-      appendTerminalLine('INPUT', 'tag-cmd', val);
-
-      if (val === 'clear') {
-        terminalBody.innerHTML = '';
-        appendTerminalLine('SYS', 'tag-cmd', 'Terminal cleared.');
-      } else if (val === 'help') {
-        appendTerminalLine('HELP', 'tag-plan', 'Available commands:');
-        appendTerminalLine('LIST', 'tag-result', '• help - Display available CLI commands');
-        appendTerminalLine('LIST', 'tag-result', '• run - Execute default Outlook IT troubleshooter agent');
-        appendTerminalLine('LIST', 'tag-result', '• skills - Output engineering proficiency matrix');
-        appendTerminalLine('LIST', 'tag-result', '• contact - Show Vikram\'s direct contact channels');
-        appendTerminalLine('LIST', 'tag-result', '• clear - Clean terminal output');
-      } else if (val === 'run' || val.includes('troubleshoot')) {
-        executePreset(resumeData.agentPresets[0]);
-      } else if (val === 'skills') {
-        appendTerminalLine('STACK', 'tag-tool', 'Core: Multi-Agent Systems, Ollama, LangChain, Python, Playwright, React, Three.js');
-      } else if (val === 'contact') {
-        appendTerminalLine('INFO', 'tag-success', `Email: ${resumeData.contact.email}`);
-        appendTerminalLine('INFO', 'tag-success', `Phones: ${resumeData.contact.ukPhone} (UK) | ${resumeData.contact.inPhone} (IN)`);
-        appendTerminalLine('INFO', 'tag-success', `Substack: ${resumeData.contact.substackUrl}`);
-      } else {
-        appendTerminalLine('ERR', 'tag-result', `Command not recognized: '${val}'. Type 'help' for available commands or click a preset.`);
-      }
+      processCommand(val);
     });
   }
 };

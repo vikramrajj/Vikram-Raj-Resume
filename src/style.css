@@ -720,64 +720,87 @@ html[data-theme="dark"] .bit-portrait-img {
 }
 
 /* ==========================================================================
-   Faux-OS Window Chrome & Agentic Terminal
+   Antigravity Terminal Window & Agent CLI Simulator (macOS Chrome)
    ========================================================================== */
 .terminal-window {
-  background: var(--terminal-bg);
-  color: var(--terminal-fg);
-  border-radius: 8px;
-  border: 1px solid var(--terminal-border);
+  background: #090a0c;
+  color: #e6e6e5;
+  border-radius: 12px;
+  border: 1px solid var(--border-strong);
   overflow: hidden;
   font-family: var(--font-mono);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  position: relative;
+}
+
+html[data-theme="dark"] .terminal-window {
+  background: #07080a;
+  border-color: #242629;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
 
 .terminal-header {
-  background: var(--terminal-header);
-  border-bottom: 1px solid var(--terminal-border);
-  padding: 0.65rem 1rem;
+  background: #111317;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.75rem 1.15rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* Faux macOS 3 small light-gray circles */
+/* Authentic macOS Traffic Light Window Chrome Dots matching antigravity demo */
 .terminal-dots {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
 }
 
 .terminal-dot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: #3e4249;
+  display: inline-block;
+}
+
+.terminal-dot.red {
+  background: #ff5f56;
+}
+
+.terminal-dot.yellow {
+  background: #ffbd2e;
+}
+
+.terminal-dot.green {
+  background: #27c93f;
 }
 
 .terminal-title {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: #8c8f96;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .terminal-badge {
   font-size: 0.68rem;
   color: var(--pastel-green-fg);
   background: var(--pastel-green-bg);
-  padding: 0.15rem 0.5rem;
+  padding: 0.15rem 0.55rem;
   border-radius: 9999px;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
+  font-weight: 500;
 }
 
 .terminal-controls {
-  padding: 0.85rem 1rem;
-  background: rgba(255, 255, 255, 0.015);
-  border-bottom: 1px solid var(--terminal-border);
+  padding: 0.65rem 1.15rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .terminal-controls-label {
@@ -785,87 +808,182 @@ html[data-theme="dark"] .bit-portrait-img {
   color: #72767e;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-right: 0.25rem;
+  margin-right: 0.35rem;
 }
 
 .terminal-chip {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--terminal-border);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #cfd2d8;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 0.3rem 0.7rem;
+  font-size: 0.74rem;
+  padding: 0.25rem 0.65rem;
   border-radius: 4px;
   cursor: pointer;
   transition: all var(--duration-fast);
 }
 
 .terminal-chip:hover {
-  background: rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
-  border-color: #555861;
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .terminal-chip:active {
-  transform: scale(0.98);
+  transform: scale(0.96);
+}
+
+/* Canvas container layered with antigravity particles */
+.terminal-canvas-container {
+  position: relative;
+  min-height: 250px;
+  max-height: 380px;
+  overflow: hidden;
+  background: #090a0c;
+}
+
+.antigravity-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .terminal-body {
-  padding: 1.25rem 1rem;
-  min-height: 220px;
+  position: relative;
+  z-index: 2;
+  padding: 1.25rem 1.15rem;
+  height: 100%;
   max-height: 380px;
   overflow-y: auto;
-  font-size: 0.82rem;
-  line-height: 1.6;
+  font-size: 0.83rem;
+  line-height: 1.65;
 }
 
 .terminal-line {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
   word-break: break-word;
 }
 
 .terminal-tag {
   display: inline-block;
-  padding: 0.1rem 0.4rem;
+  padding: 0.12rem 0.45rem;
   border-radius: 3px;
   font-size: 0.68rem;
   font-weight: 500;
-  margin-right: 0.5rem;
+  margin-right: 0.55rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
 }
 
-.tag-plan { background: rgba(128, 200, 248, 0.15); color: #80c8f8; }
-.tag-think { background: rgba(243, 203, 108, 0.15); color: #f3cb6c; }
-.tag-tool { background: rgba(141, 215, 150, 0.15); color: #8dd796; }
-.tag-result { background: rgba(255, 255, 255, 0.08); color: #9b9a97; }
-.tag-success { background: rgba(141, 215, 150, 0.2); color: #8dd796; }
-.tag-cmd { background: rgba(255, 255, 255, 0.1); color: #ffffff; }
+.tag-plan { background: rgba(128, 200, 248, 0.18); color: #80c8f8; }
+.tag-think { background: rgba(243, 203, 108, 0.18); color: #f3cb6c; }
+.tag-tool { background: rgba(141, 215, 150, 0.18); color: #8dd796; }
+.tag-result { background: rgba(255, 255, 255, 0.08); color: #a5a8af; }
+.tag-success { background: rgba(141, 215, 150, 0.22); color: #8dd796; }
+.tag-cmd { background: rgba(255, 255, 255, 0.12); color: #ffffff; }
 
+/* Prompt bar matching reference screenshot (→ ~) */
 .terminal-prompt-bar {
   display: flex;
   align-items: center;
-  padding: 0.65rem 1rem;
-  border-top: 1px solid var(--terminal-border);
-  background: rgba(0, 0, 0, 0.2);
-  gap: 0.5rem;
+  padding: 0.75rem 1.15rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0d0f12;
+  gap: 0.55rem;
 }
 
-.terminal-prefix {
-  color: #8c8f96;
-  font-size: 0.8rem;
+.terminal-prompt-prefix {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.prompt-arrow {
+  color: #27c93f;
+}
+
+.prompt-tilde {
+  color: #57c7ff;
 }
 
 .terminal-input {
   flex: 1;
   background: transparent;
   border: none;
-  outline: none;
-  color: #f1f1f1;
+  color: #f1f2f4;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
+  outline: none;
+  caret-color: #27c93f;
 }
 
 .terminal-input::placeholder {
   color: #555861;
+}
+
+/* Inline action buttons returned inside terminal */
+.terminal-inline-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.terminal-inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: #57c7ff;
+  background: rgba(87, 199, 255, 0.12);
+  border: 1px solid rgba(87, 199, 255, 0.28);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all var(--duration-fast);
+}
+
+.terminal-inline-link:hover {
+  background: rgba(87, 199, 255, 0.22);
+  color: #ffffff;
+}
+
+.terminal-inline-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: #cfd2d8;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--duration-fast);
+}
+
+.terminal-inline-copy:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.terminal-text-link {
+  color: #57c7ff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* ==========================================================================
