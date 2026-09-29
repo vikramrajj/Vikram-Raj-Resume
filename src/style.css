@@ -2321,36 +2321,133 @@ html[data-theme="dark"] .deck-fan-stage:not(.grid-mode) .fan-card.active-card {
 }
 
 /* ==========================================================================
-   Contact & Direct Channels
+   Social Media Profiles & Hyperlinks (Bottom Section)
    ========================================================================== */
-.contact-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 3rem 2.5rem;
-  text-align: center;
-  max-width: 720px;
+.social-section {
+  padding-bottom: 5rem;
+}
+
+.social-container {
+  max-width: 960px;
   margin: 0 auto;
 }
 
-.contact-card h2 {
+.social-header {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+.social-header h2 {
   font-family: var(--font-serif);
-  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
-  margin-bottom: 0.75rem;
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
 }
 
-.contact-card p {
+.social-header p {
+  color: var(--fg-secondary);
   font-size: 0.95rem;
-  max-width: 500px;
-  margin: 0 auto 2rem;
+  max-width: 520px;
+  margin: 0 auto;
 }
 
-.contact-channels {
+.social-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.social-card {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.1rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--fg);
+  transition: transform var(--duration-fast) var(--ease-minimal),
+              border-color var(--duration-fast) var(--ease-minimal),
+              box-shadow var(--duration-fast) var(--ease-minimal),
+              background var(--duration-fast) var(--ease-minimal);
+  position: relative;
+}
+
+.social-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.social-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
+  color: var(--fg);
+  flex-shrink: 0;
+  transition: border-color var(--duration-fast), background var(--duration-fast);
+}
+
+.social-card:hover .social-card-icon {
+  border-color: var(--border-strong);
+  background: var(--surface);
+}
+
+.social-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.social-card-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg);
+  line-height: 1.2;
+}
+
+.social-card-id {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--fg-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.social-card-action {
+  color: var(--fg-secondary);
+  display: flex;
+  align-items: center;
+  transition: transform var(--duration-fast), color var(--duration-fast);
+  flex-shrink: 0;
+}
+
+.social-card:hover .social-card-action {
+  color: var(--fg);
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 900px) {
+  .social-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .social-cards-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .copy-contact-btn {
@@ -2402,41 +2499,6 @@ html[data-theme="dark"] .deck-fan-stage:not(.grid-mode) .fan-card.active-card {
 .copy-tooltip.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
-}
-
-.social-links-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.social-link-item {
-  width: 36px;
-  height: 36px;
-  border-radius: 5px;
-  background: var(--surface-subtle);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--fg-secondary);
-  transition: all var(--duration-fast) ease;
-}
-
-.social-link-item:hover {
-  background: var(--surface);
-  color: var(--fg);
-  border-color: var(--border-strong);
-}
-
-.social-link-item:active {
-  transform: scale(0.96);
-}
-
-.social-link-item svg {
-  width: 17px;
-  height: 17px;
 }
 
 /* Site Footer */

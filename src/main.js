@@ -305,19 +305,19 @@ const renderApp = () => {
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Competencies</a></li>
-          <li><a href="#terminal">Agent CLI</a></li>
           <li><a href="#timeline">Journey</a></li>
           <li><a href="#projects">Repositories</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#terminal">Agent CLI</a></li>
+          <li><a href="#contact">Social</a></li>
         </ul>
 
         <div class="nav-actions">
           <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light/dark mode">
             ${currentTheme === 'dark' ? icons.sun : icons.moon}
           </button>
-          <a href="#contact" class="btn-resume">
-            ${icons.download}
-            <span>Curriculum Vitae</span>
+          <a href="#terminal" class="btn-resume">
+            ${icons.terminal}
+            <span>Agent CLI</span>
           </a>
           <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open navigation menu">
             ${icons.menu}
@@ -330,10 +330,10 @@ const renderApp = () => {
     <div id="mobileDrawer" class="mobile-nav-drawer">
       <a href="#about" class="mobile-link">About</a>
       <a href="#skills" class="mobile-link">Competencies</a>
-      <a href="#terminal" class="mobile-link">Agent CLI</a>
       <a href="#timeline" class="mobile-link">Journey</a>
       <a href="#projects" class="mobile-link">Repositories</a>
-      <a href="#contact" class="mobile-link">Contact</a>
+      <a href="#terminal" class="mobile-link">Agent CLI</a>
+      <a href="#contact" class="mobile-link">Social</a>
     </div>
 
     <!-- Main Content Container (Constrained max-w-5xl) -->
@@ -659,10 +659,6 @@ const renderApp = () => {
             <canvas id="antigravityCanvas" class="antigravity-canvas"></canvas>
             <div id="terminalBody" class="terminal-body">
               <div class="terminal-line">
-                <span class="terminal-tag tag-cmd">SYS</span>
-                <span>Antigravity Agentic Runtime v2.4 initialized. Particle physics engine active.</span>
-              </div>
-              <div class="terminal-line">
                 <span class="terminal-tag tag-result">INFO</span>
                 <span>Type <kbd>email</kbd> to retrieve primary contact, or click any preset chip above.</span>
               </div>
@@ -686,58 +682,50 @@ const renderApp = () => {
         </div>
       </section>
 
-      <!-- Contact & Direct Channels Section -->
-      <section id="contact" class="section-spacing">
-        <div class="contact-card reveal">
-          <span class="section-eyebrow" style="justify-content: center; margin-bottom: 1rem;">Direct Channels</span>
-          <h2>Let's Discuss Autonomous AI Systems</h2>
-          <p>
-            Open to discussing Agentic AI architectures, offline LLM pipelines, or hiring for LLM Engineering roles.
-          </p>
-
-          <div class="contact-channels">
-            <button class="copy-contact-btn" data-copy-val="${resumeData.contact.email}">
-              ${icons.copy}
-              <span>${resumeData.contact.email}</span>
-              <span class="copy-tooltip">Copied</span>
-            </button>
-
-            <button class="copy-contact-btn" data-copy-val="${resumeData.contact.ukPhone}">
-              ${icons.copy}
-              <span>${resumeData.contact.ukPhone} (UK)</span>
-              <span class="copy-tooltip">Copied</span>
-            </button>
-
-            <button class="copy-contact-btn" data-copy-val="${resumeData.contact.inPhone}">
-              ${icons.copy}
-              <span>${resumeData.contact.inPhone} (IN)</span>
-              <span class="copy-tooltip">Copied</span>
-            </button>
-
-            <a href="mailto:${resumeData.contact.email}?subject=LLM%20Engineering%20Inquiry%20-%20Vikram%20Rajpurohit" class="btn-primary">
-              <span>Send Direct Email</span>
-              ${icons.arrowUpRight}
-            </a>
-
-            <a href="${resumeData.contact.substackUrl}" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-              ${icons.substack}
-              <span>Read on Substack</span>
-              ${icons.arrowUpRight}
-            </a>
+      <!-- Social Media Hyperlinks & Profiles Section -->
+      <section id="contact" class="section-spacing social-section">
+        <div class="social-container reveal">
+          <div class="social-header">
+            <span class="section-eyebrow" style="justify-content: center; margin-bottom: 0.75rem;">Social Profiles</span>
+            <h2>Connect &amp; Follow</h2>
+            <p>Direct hyperlinks and handles across technical networks, open source repositories, and AI publications.</p>
           </div>
 
-          <div class="social-links-bar">
-            <a href="${resumeData.contact.linkedinUrl}" target="_blank" rel="noopener noreferrer" class="social-link-item" aria-label="LinkedIn Profile">
-              ${icons.linkedin}
+          <div class="social-cards-grid">
+            <a href="${resumeData.contact.githubUrl}" target="_blank" rel="noopener noreferrer" class="social-card" aria-label="GitHub Profile @${resumeData.contact.github}">
+              <div class="social-card-icon">${icons.github}</div>
+              <div class="social-card-info">
+                <span class="social-card-name">GitHub</span>
+                <span class="social-card-id">@${resumeData.contact.github}</span>
+              </div>
+              <span class="social-card-action">${icons.arrowUpRight}</span>
             </a>
-            <a href="${resumeData.contact.githubUrl}" target="_blank" rel="noopener noreferrer" class="social-link-item" aria-label="GitHub Profile">
-              ${icons.github}
+
+            <a href="${resumeData.contact.linkedinUrl}" target="_blank" rel="noopener noreferrer" class="social-card" aria-label="LinkedIn Profile ${resumeData.contact.linkedin}">
+              <div class="social-card-icon">${icons.linkedin}</div>
+              <div class="social-card-info">
+                <span class="social-card-name">LinkedIn</span>
+                <span class="social-card-id">${resumeData.contact.linkedin}</span>
+              </div>
+              <span class="social-card-action">${icons.arrowUpRight}</span>
             </a>
-            <a href="${resumeData.contact.twitterUrl}" target="_blank" rel="noopener noreferrer" class="social-link-item" aria-label="Twitter / X Profile">
-              ${icons.twitter}
+
+            <a href="${resumeData.contact.twitterUrl}" target="_blank" rel="noopener noreferrer" class="social-card" aria-label="X Profile ${resumeData.contact.twitter}">
+              <div class="social-card-icon">${icons.twitter}</div>
+              <div class="social-card-info">
+                <span class="social-card-name">X (Twitter)</span>
+                <span class="social-card-id">${resumeData.contact.twitter}</span>
+              </div>
+              <span class="social-card-action">${icons.arrowUpRight}</span>
             </a>
-            <a href="${resumeData.contact.substackUrl}" target="_blank" rel="noopener noreferrer" class="social-link-item" aria-label="Substack Profile">
-              ${icons.substack}
+
+            <a href="${resumeData.contact.substackUrl}" target="_blank" rel="noopener noreferrer" class="social-card" aria-label="Substack Profile ${resumeData.contact.substack}">
+              <div class="social-card-icon">${icons.substack}</div>
+              <div class="social-card-info">
+                <span class="social-card-name">Substack</span>
+                <span class="social-card-id">${resumeData.contact.substack}</span>
+              </div>
+              <span class="social-card-action">${icons.arrowUpRight}</span>
             </a>
           </div>
         </div>
@@ -1318,7 +1306,7 @@ const setupTerminalSandbox = () => {
 
     if (val === 'clear' || val === 'cls') {
       terminalBody.innerHTML = '';
-      appendTerminalLine('SYS', 'tag-cmd', 'Terminal cleared. Antigravity particle engine running.');
+      appendTerminalLine('INFO', 'tag-result', 'Type email to retrieve primary contact, or click any preset chip.');
     } else if (val === 'email' || val === 'mail' || val === 'e-mail') {
       appendTerminalLine('PLAN', 'tag-plan', 'Resolving primary communication channel for Vikram Rajpurohit...');
       await new Promise(r => setTimeout(r, 220));
