@@ -1,19 +1,93 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vikram | Minimalist Portfolio</title>
+  <meta name="color-scheme" content="light dark" />
+
+  <title>Vikram Rajpurohit | LLM Engineer & Agentic AI Specialist</title>
   <meta name="description"
-    content="Technical Showcase & Professional Experience of Vikram. Minimal Design, Maximum Impact.">
-  <!-- Google Fonts -->
+    content="Portfolio of Vikram Rajpurohit — LLM Engineer and Agentic AI Specialist in Mumbai, IN. Specialized in Multi-Agent Orchestration, Offline LLMs (Ollama), and Autonomous Browser Agents." />
+  <meta name="author" content="Vikram Rajpurohit" />
+  <meta name="keywords"
+    content="Vikram Rajpurohit, LLM Engineer, Agentic AI, AI Agent, LangChain, Ollama, Machine Learning, Mumbai AI Engineer, Python, Three.js" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Vikram Rajpurohit | LLM Engineer & Agentic AI Specialist" />
+  <meta property="og:description"
+    content="Engineering autonomous multi-agent systems, privacy-first offline LLMs, and intelligent automation for complex enterprise challenges." />
+  <meta property="og:image" content="/vite.svg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@imvikramraj" />
+  <meta name="twitter:creator" content="@imvikramraj" />
+  <meta name="twitter:title" content="Vikram Rajpurohit | LLM Engineer & Agentic AI Specialist" />
+  <meta name="twitter:description"
+    content="Engineering autonomous multi-agent systems, privacy-first offline LLMs, and intelligent automation for complex enterprise challenges." />
+
+  <!-- Typography: Geist (Sans), Newsreader (Editorial Serif), and Geist Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap"
     rel="stylesheet">
+
+  <!-- FOUC Prevention Script for Dark/Light Theme -->
+  <script>
+    (function () {
+      try {
+        const savedTheme = localStorage.getItem('portfolio-theme');
+        if (savedTheme === 'dark' || savedTheme === 'light') {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Vikram Rajpurohit",
+      "jobTitle": "LLM Engineer | Agentic AI Specialist",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mumbai",
+        "addressCountry": "India"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Aston University"
+      },
+      "sameAs": [
+        "https://linkedin.com/in/vikram-rajpurohit-a486b17a",
+        "https://github.com/vikramrajj",
+        "https://twitter.com/imvikramraj",
+        "https://substack.com/@imvikramraj"
+      ],
+      "knowsAbout": [
+        "Agentic AI",
+        "Large Language Models (LLMs)",
+        "LangChain",
+        "Ollama Offline Deployment",
+        "Autonomous Multi-Agent Systems",
+        "Python",
+        "Azure Active Directory",
+        "Offline LLM Architectures"
+      ]
+    }
+  </script>
 </head>
 
 <body>
